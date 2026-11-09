@@ -1,0 +1,3 @@
+- Cache : j'ai copié requirements.txt et lancé pip install avant COPY . ., donc après modification de app/main.py, pip install reste CACHED et seule la dernière couche (COPY . .) est refaite.
+- Taille : python:3.12-slim et le .dockerignore (.git, .venv, tests, caches exclus) font passer l'image de 2,53 Go (naïve, 623 Mo de contenu) à 602 Mo (finale, 139 Mo de contenu), soit environ 4 fois moins.
+- Sécurité et config : USER app (uid 1000) évite de tourner en root, et OUTPUT_DIR a une valeur par défaut via ENV, surchargée par -e pour écrire dans un volume.

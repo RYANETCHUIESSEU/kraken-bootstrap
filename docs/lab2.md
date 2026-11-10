@@ -1,0 +1,3 @@
+- Le job `kraken / lint-test` lance ruff et pytest sur chaque pull request : un test cassé le met en échec (vérifié avec la PR #1), et l'artefact junit.xml reste publié grâce à `if: always()`.
+- Le ruleset de `main` exige une pull request et les checks `kraken / lint-test` et `kraken / build-push` : tant qu'ils ne sont pas verts, le bouton Merge est bloqué et aucun push direct n'est possible.
+- Le job `kraken / build-push` construit l'image à chaque PR, donc un Dockerfile cassé fait échouer le check, et l'image n'est poussée sur GHCR (taguée avec le SHA) que depuis `main`.

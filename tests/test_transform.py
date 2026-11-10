@@ -32,7 +32,7 @@ def test_transform_drops_stations_without_capacity():
     df = sample()
     df.loc[0, ["bikes_available", "docks_available"]] = 0
     out = transform(df)
-    assert len(out) == 2
+    assert len(out) == 99
     assert 1 not in set(out["station_id"])
 
 
